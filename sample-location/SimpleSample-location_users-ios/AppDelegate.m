@@ -18,21 +18,13 @@
 @synthesize tabBarController = _tabBarController;
 @synthesize splashController;
 
-- (void)dealloc
-{
-    [splashController release];
-    [_window release];
-    [_tabBarController release];
-    [super dealloc];
-}
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Set QuickBlox credentials (You must create application in admin.quickblox.com)
-    [QBSettings setApplicationID: 11980];
-    [QBSettings setAuthorizationKey: @"4ATE79GUEAB2q2j"];
-    [QBSettings setAuthorizationSecret: @"DX73OytHn5ug9bm"];
-    [QBSettings setAccountKey: @"my9PSrb3sBCrcpay4Fzx"];
+    [QBSettings setApplicationID:92];
+    [QBSettings setAuthorizationKey:@"wJHdOcQSxXQGWx5"];
+    [QBSettings setAuthorizationSecret:@"BTFsj7Rtt27DAmT"];
+    [QBSettings setAccountKey:@"7yvNe17TnjNUqDoPwfqp"];
     
     // create two  UIViewControllers
     UIViewController *mapViewControleler, *latestCheckinsViewControleler;
@@ -40,20 +32,18 @@
     latestCheckinsViewControleler = [[LatestCheckinsViewController alloc] initWithNibName:@"LatestCheckinsViewController" bundle:nil];
     
     // connect views to tabBar
-    self.tabBarController = [[[UITabBarController alloc] init] autorelease];
+    self.tabBarController = [[UITabBarController alloc] init];
     if(QB_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")){
         self.tabBarController.tabBar.translucent = NO;
     }
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:mapViewControleler, latestCheckinsViewControleler, nil];
-    [mapViewControleler release];
-    [latestCheckinsViewControleler release];
     
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     // Override point for customization after application launch.
     
     // show splash controller
-    self.splashController = [[[SplashViewController alloc] initWithNibName:@"SplashViewController" bundle:nil] autorelease];
+    self.splashController = [[SplashViewController alloc] initWithNibName:@"SplashViewController" bundle:nil];
     
     self.window.rootViewController = (UIViewController*)self.splashController;
     [self.window makeKeyAndVisible];
